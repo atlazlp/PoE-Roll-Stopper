@@ -3,7 +3,7 @@ SendMode Input
 SetWorkingDir, %A_ScriptDir%
 Width := 350
 Height := 150
-ItemAffix := ""
+ItemAffix := "" ; Default Affix
 
 #IfWinActive Path of Exile
 {
@@ -24,14 +24,14 @@ ItemAffix := ""
       MsgBox, Without an Affix RollStopper will stop all of your rolls, press F8 to configure a new Affix
       return
     }
-    clipboard := ""
+    clipboard := "" ; Clear clipboard
     Sleep 1
     Send, ^c
     Sleep 1
-    Send, ^c
+    Send, ^c ; Copy twice and sleep to avoid any eventual slowdowns
     Sleep 1
-    clipboard := clipboard
-    IfInString, clipboard, %ItemAffix%
+    clipboard := clipboard ; Get clipboard info
+    IfInString, clipboard, %ItemAffix% ; Check if ItemAffix is the current item being clicked
     {
       SoundBeep, 400, 500
     }
